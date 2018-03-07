@@ -1,5 +1,4 @@
 #include "FWCore/Framework/interface/MakerMacros.h"
-
 #include "DQM/Physics/src/BPhysicsOniaDQM.h"
 #include "DQM/Physics/src/EwkDQM.h"
 #include "DQM/Physics/src/EwkMuDQM.h"
@@ -21,6 +20,7 @@
 #include "DQM/Physics/src/B2GDQM.h"
 #include "DQM/Physics/src/CentralityDQM.h"
 #include "DQM/Physics/src/CentralitypADQM.h"
+#include "DQM/Physics/src/DQMFSQ.h"
 
 DEFINE_FWK_MODULE(BPhysicsOniaDQM);
 DEFINE_FWK_MODULE(EwkDQM);
@@ -43,7 +43,7 @@ DEFINE_FWK_MODULE(ExoticaDQM);
 DEFINE_FWK_MODULE(B2GDQM);
 DEFINE_FWK_MODULE(CentralityDQM);
 DEFINE_FWK_MODULE(CentralitypADQM);
-
+DEFINE_FWK_MODULE(DQMFSQ);
 // Local Variables:
 // show-trailing-whitespace: t
 // truncate-lines: t

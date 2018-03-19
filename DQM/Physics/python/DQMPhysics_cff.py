@@ -17,7 +17,7 @@ from DQM.Physics.B2GDQM_cfi import *
 from DQM.Physics.CentralityDQM_cfi import *
 from DQM.Physics.CentralitypADQM_cfi import *
 from DQM.Physics.topJetCorrectionHelper_cfi import *
-from DQM.Physics.dqmfsq_cfi import *
+from DQM.Physics.DQMFSQ_cfi import *
 dqmPhysics = cms.Sequence( bphysicsOniaDQM 
                            *ewkMuDQM
                            *ewkElecDQM

@@ -1,6 +1,6 @@
 import FWCore.ParameterSet.Config as cms
 
-DQMFSQ= cms.EDAnalyzer('DQMFSQ',
+FSQDQM= cms.EDAnalyzer('FSQDQM',
                      triggerResultsCollection = cms.InputTag("TriggerResults", "", "HLT"),
                      HLTriggerResults = cms.InputTag("TriggerResults","","HLT"),
                      LabelPFJet       = cms.string("ak4PFJetsCHS"),

@@ -1,4 +1,4 @@
-#include "DQM/Physics/src/DQMFSQ.h"
+#include "DQM/Physics/src/FSQDQM.h"
 #include <memory>
 using namespace std;
 using namespace reco;
@@ -16,7 +16,7 @@ struct SortByPt
   
 };
 
-float DQMFSQ::deltaPhi(float phi1, float phi2){
+float FSQDQM::deltaPhi(float phi1, float phi2){
   float result = phi1 - phi2;
   while (result > M_PI) result -= 2*M_PI;
   while (result <= -M_PI) result += 2*M_PI;
@@ -24,7 +24,7 @@ float DQMFSQ::deltaPhi(float phi1, float phi2){
 }
 
 
-DQMFSQ::DQMFSQ(const edm::ParameterSet& iConfig)
+FSQDQM::FSQDQM(const edm::ParameterSet& iConfig)
 {
   edm::LogInfo("FSQDQM") << " Creating FSQDQM "
 				 << "\n";
@@ -50,7 +50,7 @@ DQMFSQ::DQMFSQ(const edm::ParameterSet& iConfig)
 }
 
 
-DQMFSQ::~DQMFSQ()
+FSQDQM::~FSQDQM()
 {
  
   edm::LogInfo("FSQDQM") << " Deleting FSQDQM "
@@ -59,8 +59,8 @@ DQMFSQ::~DQMFSQ()
    // (e.g. close files, deallocate resources etc.)
 
 }
-void DQMFSQ::beginJob(){
-  cout<<"Enterin DQMFSQ::beginJob: "<<endl;
+void FSQDQM::beginJob(){
+  cout<<"Enterin FSQDQM::beginJob: "<<endl;
   bei_->setCurrentFolder("Physics/FSQ/TESTFSQ");
   cout<<"created dir "<<endl;
   bookHistos(bei_);
@@ -68,13 +68,13 @@ void DQMFSQ::beginJob(){
 
   
 
-  //cout<<"...leaving DQMFSQ::beginJob. "<<endl;
+  //cout<<"...leaving FSQDQM::beginJob. "<<endl;
 }
 //
 // -- Begin Run
 //
-void DQMFSQ::beginRun(Run const& run, edm::EventSetup const& eSetup) {
-  edm::LogInfo ("DQMFSQ") <<"[DQMFSQ]: Begining of Run";
+void FSQDQM::beginRun(Run const& run, edm::EventSetup const& eSetup) {
+  edm::LogInfo ("FSQDQM") <<"[FSQDQM]: Begining of Run";
   // passed as parameter to HLTConfigProvider::init(), not yet used
   bool isConfigChanged = false;
   
@@ -87,24 +87,24 @@ void DQMFSQ::beginRun(Run const& run, edm::EventSetup const& eSetup) {
 // -- Begin  Luminosity Block
 //
 
-void DQMFSQ::beginLuminosityBlock(edm::LuminosityBlock const& lumiSeg, 
+void FSQDQM::beginLuminosityBlock(edm::LuminosityBlock const& lumiSeg, 
 				    edm::EventSetup const& context) {
-  cout<<"Entering DQMFSQ::beginLuminosityBlock: "<<endl;
+  cout<<"Entering FSQDQM::beginLuminosityBlock: "<<endl;
   
-  edm::LogInfo ("DQMFSQ") <<"[DQMFSQ]: Begin of LS transition";
+  edm::LogInfo ("FSQDQM") <<"[FSQDQM]: Begin of LS transition";
 
-  cout<<"...leaving DQMFSQ::beginLuminosityBlock. "<<endl;
+  cout<<"...leaving FSQDQM::beginLuminosityBlock. "<<endl;
 }
 
 
 //
 //  -- Book histograms
 //
-void DQMFSQ::bookHistos(DQMStore* bei){
+void FSQDQM::bookHistos(DQMStore* bei){
   //  bei->cd();
   bei->setCurrentFolder("Physics/FSQ/TESTFSQ");
 
-  //void DQMFSQ::bookHistograms(DQMStore::IBooker & ibooker,edm::Run const &, edm::EventSetup const & ){
+  //void FSQDQM::bookHistograms(DQMStore::IBooker & ibooker,edm::Run const &, edm::EventSetup const & ){
   //  ibooker.setCurrentFolder("Physics/FSQ");
 
   PFJetpt = bei->book1D("PFJetpt",";p_{T}(PFJet)", 100,0.0 , 100);
@@ -147,7 +147,7 @@ void DQMFSQ::bookHistos(DQMStore* bei){
 
 // ------------ method called for each event  ------------
 void
-DQMFSQ::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
+FSQDQM::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
   using namespace edm;
   using namespace std;
@@ -328,7 +328,7 @@ DQMFSQ::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	 }*/
 }//analyze
 
-/*void DQMFSQ::beginRun(edm::Run const& iRun, edm::EventSetup const& iSetup) {
+/*void FSQDQM::beginRun(edm::Run const& iRun, edm::EventSetup const& iSetup) {
 
 
   all_triggers.clear();
@@ -349,36 +349,19 @@ DQMFSQ::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   }
 }//beginRun
 */
-void DQMFSQ::endRun(edm::Run const& run, edm::EventSetup const& eSetup) {
-  cout<<"Entering DQMFSQ::endRun: "<<endl;
+void FSQDQM::endRun(edm::Run const& run, edm::EventSetup const& eSetup) {
+  cout<<"Entering FSQDQM::endRun: "<<endl;
 
-  // edm::LogVerbatim ("DQMFSQ") <<"[DQMFSQ]: End of Run, saving  DQM output
+  // edm::LogVerbatim ("FSQDQM") <<"[FSQDQM]: End of Run, saving  DQM output
   // ";
   // int iRun = run.run();
 
-  cout<<"...leaving DQMFSQ::endRun. "<<endl;
+  cout<<"...leaving FSQDQM::endRun. "<<endl;
 }
 
 // ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
-/*void
-DQMFSQ::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
-  //The following says we do not know what parameters are allowed so do no validation
-  // Please change this to state exactly what you do use, even if it is no parameters
-  edm::ParameterSetDescription desc;
-  //  desc.setUnknown();
-  // descriptions.addDefault(desc);
-  desc.add<edm::InputTag>("HLTriggerResults",edm::InputTag("TriggerResults","","HLT"));
-  desc.add<std::string>("LabelBeamSpot","offlineBeamSpot");
-  desc.add<std::string>("LabelVertex","offlinePrimaryVertices");
-  desc.add<std::string>("LabelPFJet","ak4PFJetsCHS");
-  desc.add<std::string>("LabelCastorJet","ak5CastorJets");
-  desc.add<std::string>("LabelTrack","generalTracks");
-  std::vector<std::string> trig = {"HLT_ZeroBias","HLT_L1MinimumBiasHF_OR_part0"};
-  desc.add<std::vector<std::string>>("Triggers",trig);
-  descriptions.add("DQMFSQ",desc);
-}
-*/
+
 //define this as a plug-in
-//DEFINE_FWK_MODULE(DQMFSQ);
+//DEFINE_FWK_MODULE(FSQDQM);
 
 //  LocalWords:  TH1F ptsum fs ntracks

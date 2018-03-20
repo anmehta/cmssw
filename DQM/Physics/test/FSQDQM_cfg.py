@@ -1,6 +1,6 @@
 import FWCore.ParameterSet.Config as cms
 
-process = cms.Process("DQMFSQ")
+process = cms.Process("FSQDQM")
 process.load("DQM.Physics.dqmfsq_cfi")
 process.load("DQMServices.Core.DQM_cfg")
 process.load("DQMServices.Components.DQMEnvironment_cfi")
@@ -29,8 +29,8 @@ process.MessageLogger = cms.Service("MessageLogger",
         )
                                     )
 
-#process.demo = cms.EDAnalyzer('DQMFSQ')
-process.p = cms.Path(process.DQMFSQ)#+process.dqmSaver)
+#process.demo = cms.EDAnalyzer('FSQDQM')
+process.p = cms.Path(process.FSQDQM)#+process.dqmSaver)
 
 
 process.TFileService = cms.Service("TFileService",

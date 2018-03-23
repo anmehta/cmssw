@@ -15,38 +15,34 @@ struct SortByPt
   }
   
 };
-
+/*
 float FSQDQM::deltaPhi(float phi1, float phi2){
   float result = phi1 - phi2;
   while (result > M_PI) result -= 2*M_PI;
   while (result <= -M_PI) result += 2*M_PI;
   return result;
 }
-
+*/
 
 FSQDQM::FSQDQM(const edm::ParameterSet& iConfig)
 {
-  edm::LogInfo("FSQDQM") << " Creating FSQDQM "
-				 << "\n";
-  cout<<"got the paramterrs"<<endl;
-  //now do what ever initialization is needed
-  //   usesResource(TFileService::kSharedResource);
-   HLTriggerResults_ = iConfig.getParameter<edm::InputTag>("HLTriggerResults");
-   labelBS_          = iConfig.getParameter<std::string>("LabelBeamSpot");
-   labelVtx_         = iConfig.getParameter<std::string>("LabelVertex");
-   //   triggers_         = iConfig.getParameter<std::vector<std::string>>("Triggers");
-   labelPFJet_         = iConfig.getParameter<std::string>("LabelPFJet");
-   labelCastorJet_         = iConfig.getParameter<std::string>("LabelCastorJet");
-   theTriggerResultsCollection = iConfig.getParameter<InputTag>("triggerResultsCollection");
-   labelTrack_       = iConfig.getParameter<std::string>("LabelTrack");
-   tok_trigRes_      = consumes<edm::TriggerResults>(HLTriggerResults_);
-   tok_bs_           = consumes<reco::BeamSpot>(labelBS_);
-   tok_pfjet_          = consumes<reco::PFJetCollection>(labelPFJet_);
-   tok_track_        = consumes<reco::TrackCollection>(labelTrack_);
-   tok_Vtx_          = consumes<reco::VertexCollection>(labelVtx_);
-   tok_castorjet_          = consumes<reco::BasicJetCollection>(labelCastorJet_);
-   isValidHltConfig_ = false;
-
+  edm::LogInfo("FSQDQM") << " Creating FSQDQM "<< "\n";
+  /*  
+  HLTriggerResults_ = iConfig.getParameter<edm::InputTag>("HLTriggerResults");
+  labelBS_          = iConfig.getParameter<std::string>("LabelBeamSpot");
+  labelVtx_         = iConfig.getParameter<std::string>("LabelVertex");
+  labelPFJet_         = iConfig.getParameter<std::string>("LabelPFJet");
+  labelCastorJet_         = iConfig.getParameter<std::string>("LabelCastorJet");
+  theTriggerResultsCollection = iConfig.getParameter<InputTag>("triggerResultsCollection");
+  labelTrack_       = iConfig.getParameter<std::string>("LabelTrack");
+  tok_trigRes_      = consumes<edm::TriggerResults>(HLTriggerResults_);
+  tok_bs_           = consumes<reco::BeamSpot>(labelBS_);
+  tok_pfjet_          = consumes<reco::PFJetCollection>(labelPFJet_);
+  tok_track_        = consumes<reco::TrackCollection>(labelTrack_);
+  tok_Vtx_          = consumes<reco::VertexCollection>(labelVtx_);
+  tok_castorjet_          = consumes<reco::BasicJetCollection>(labelCastorJet_);
+  isValidHltConfig_ = false;
+  */ 
 }
 
 
@@ -76,11 +72,11 @@ void FSQDQM::beginJob(){
 void FSQDQM::beginRun(Run const& run, edm::EventSetup const& eSetup) {
   edm::LogInfo ("FSQDQM") <<"[FSQDQM]: Begining of Run";
   // passed as parameter to HLTConfigProvider::init(), not yet used
-  bool isConfigChanged = false;
+  //bool isConfigChanged = false;
   
   // isValidHltConfig_ used to short-circuit analyze() in case of problems
-  const std::string hltProcessName( "HLT" );
-  isValidHltConfig_ = hltConfigProvider_.init( run, eSetup, hltProcessName, isConfigChanged );
+  //const std::string hltProcessName( "HLT" );
+  // isValidHltConfig_ = hltConfigProvider_.init( run, eSetup, hltProcessName, isConfigChanged );
 
 }
 //
@@ -106,7 +102,7 @@ void FSQDQM::bookHistos(DQMStore* bei){
 
   //void FSQDQM::bookHistograms(DQMStore::IBooker & ibooker,edm::Run const &, edm::EventSetup const & ){
   //  ibooker.setCurrentFolder("Physics/FSQ");
-
+  /*
   PFJetpt = bei->book1D("PFJetpt",";p_{T}(PFJet)", 100,0.0 , 100);
   PFJeteta = bei->book1D("PFJeteta", ";#eta(PFJet)", 50, -2.5, 2.5);
   PFJetphi = bei->book1D("PFJetphi", ";#phi(PFJet)", 50, -3.14,3.14);
@@ -132,7 +128,7 @@ void FSQDQM::bookHistos(DQMStore* bei){
   h_ntracks_transverse      = bei->book1D("h_ntracks_transverse",";h_ntracks_transverse",50,-0.5,49.5);
   h_ntracks_away      = bei->book1D("h_ntracks_away",";h_ntracks_away",50,-0.5,49.5);
 
-  /*  h_leadingtrkpt_ntrk_away = fs->make<TProfile>("h_leadingtrkpt_ntrk_away","h_leadingtrkpt_ntrk_away",50,0,50,0,30);
+  h_leadingtrkpt_ntrk_away = fs->make<TProfile>("h_leadingtrkpt_ntrk_away","h_leadingtrkpt_ntrk_away",50,0,50,0,30);
   h_leadingtrkpt_ntrk_towards = fs->make<TProfile>("h_leadingtrkpt_ntrk_towards","h_leadingtrkpt_ntrk_towards",50,0,50,0,30);
   h_leadingtrkpt_ntrk_transverse = fs->make<TProfile>("h_leadingtrkpt_ntrk_transverse","h_leadingtrkpt_ntrk_transverse",50,0,50,0,30);
   h_leadingtrkpt_ptsum_away = fs->make<TProfile>("h_leadingtrkpt_ptsum_away","h_leadingtrkpt_ptsum_away",50,0,50,0,30);
@@ -149,119 +145,85 @@ void FSQDQM::bookHistos(DQMStore* bei){
 void
 FSQDQM::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
+  /*
   using namespace edm;
   using namespace std;
   using namespace reco;
 
-   runNumber_   = iEvent.id().run();
-   eventNumber_ = iEvent.id().event();
-   lumiNumber_  = iEvent.id().luminosityBlock();
-   bxNumber_ = iEvent.bunchCrossing();
-   /*
-   edm::Handle<edm::TriggerResults> _Triggers;
-   iEvent.getByToken(tok_trigRes_, _Triggers); 
-   int Ntriggers = all_triggers.size();
-
-   if (_Triggers.isValid()) {
-     //     cout<<"trigger is valid"<<Ntriggers<<endl;
-     const edm::TriggerNames &triggerNames_ = iEvent.triggerNames(*_Triggers);
-     std::vector<int> index;
-     for (int i=0; i< Ntriggers; i++) {
-       index.push_back(triggerNames_.triggerIndex(all_triggers[i]));
-
-       int triggerSize = int( _Triggers->size());
-       if (index[i] < triggerSize) {
-	 hltresults.push_back(_Triggers->accept(index[i]));
-       }
-     }
-   }//valid trigger
+  runNumber_   = iEvent.id().run();
+  eventNumber_ = iEvent.id().event();
+  lumiNumber_  = iEvent.id().luminosityBlock();
+  bxNumber_ = iEvent.bunchCrossing();
+  edm::Handle<reco::VertexCollection> vertices;
+  iEvent.getByToken(tok_Vtx_, vertices);
+  //	 reco::VertexCollection::const_iterator firstGoodVertex = vertices->end();
+  NPV->Fill(vertices->size());
+  double bestvz=-999.9, bestvx=-999.9, bestvy=-999.9;
+  double bestvzError=-999.9, bestvxError=-999.9, bestvyError=-999.9;
+  
+  for (reco::VertexCollection::const_iterator vtx = vertices->begin(); vtx != vertices->end(); ++vtx) {
+    if (!(vtx->chi2()==0 && vtx->ndof()==0)  &&  vtx->ndof()>=4. && vtx->position().Rho()<=2.0  && fabs(vtx->position().Z())<=24.0){
+      bestvz = vtx->z(); 
+      bestvx = vtx->x(); 
+      bestvy = vtx->y();
+      bestvzError = vtx->zError(); 
+      bestvxError = vtx->xError(); 
+      bestvyError = vtx->yError();
+      PV_chi2->Fill(vtx->normalizedChi2());
+      PV_d0->Fill(sqrt(vtx->x() * vtx->x() + vtx->y() * vtx->y()));
+      PV_numTrks->Fill(vtx->tracksSize());
+      double vertex_sumTrks = 0.0;
+      for(reco::Vertex::trackRef_iterator iTrack= vtx->tracks_begin(); iTrack != vtx->tracks_end(); iTrack++)
+	{
+	  vertex_sumTrks += (*iTrack)->pt();
+	}
+      
+      
+      PV_sumTrks->Fill(vertex_sumTrks);
+    }
+  }
+	 
+  edm::Handle<reco::BeamSpot> beamSpotH;
+  iEvent.getByToken(tok_bs_, beamSpotH);
+  std::vector<Jet> recoPFJets;
+  recoPFJets.clear();
+  
+  int  nPFCHSJet=0;
+  edm::Handle<PFJetCollection> pfjetchscoll;
+  iEvent.getByToken(tok_pfjet_, pfjetchscoll);
+  const reco::PFJetCollection *pfchsjets = pfjetchscoll.product();
+  reco::PFJetCollection::const_iterator pfjetchsclus = pfchsjets->begin();
+  for(pfjetchsclus = pfchsjets->begin(); pfjetchsclus!= pfchsjets->end() ; ++pfjetchsclus){
+    PFJetpt->Fill( pfjetchsclus->pt());
+    PFJeteta->Fill( pfjetchsclus->eta());
+    PFJetphi->Fill( pfjetchsclus->phi());
+    PFJetRapidity->Fill( pfjetchsclus->rapidity());
+    nPFCHSJet++;
+  }
+  PFJetMulti->Fill( nPFCHSJet);
 
   
-   for(unsigned int k=0;k<hltresults.size();k++){
-     cout<<hltresults.size()<<endl;
-   }
+  std::vector<Jet> recoCastorJets;
+  recoCastorJets.clear();
+  
+  
+  edm::Handle<BasicJetCollection> castorJets;
+  iEvent.getByToken(tok_castorjet_, castorJets);
+  for (unsigned ijet=0; ijet<castorJets->size();ijet++) {
+    recoCastorJets.push_back((*castorJets)[ijet]);
+  }
+  for (unsigned ijet=0; ijet<recoCastorJets.size(); ijet++) {
+    cout<<recoCastorJets[ijet].pt()<<endl;
+    CastorJetphi->Fill( recoCastorJets[ijet].phi());
 
-   if( ! isValidHltConfig_ ) return;
-   Handle<TriggerResults> HLTresults;
-   iEvent.getByLabel(theTriggerResultsCollection, HLTresults); 
-   if ( !HLTresults.isValid() ) return;
-   bool passed_HLT = true;
-
-   */
-	 edm::Handle<reco::VertexCollection> vertices;
-	 iEvent.getByToken(tok_Vtx_, vertices);
-	 //	 reco::VertexCollection::const_iterator firstGoodVertex = vertices->end();
-	 NPV->Fill(vertices->size());
-	 double bestvz=-999.9, bestvx=-999.9, bestvy=-999.9;
-	 double bestvzError=-999.9, bestvxError=-999.9, bestvyError=-999.9;
-
-	 for (reco::VertexCollection::const_iterator vtx = vertices->begin(); vtx != vertices->end(); ++vtx) {
-	   if (!(vtx->chi2()==0 && vtx->ndof()==0)  &&  vtx->ndof()>=4. && vtx->position().Rho()<=2.0  && fabs(vtx->position().Z())<=24.0){
-	     bestvz = vtx->z(); 
-	     bestvx = vtx->x(); 
-	     bestvy = vtx->y();
-	     bestvzError = vtx->zError(); 
-	     bestvxError = vtx->xError(); 
-	     bestvyError = vtx->yError();
-	     PV_chi2->Fill(vtx->normalizedChi2());
-	     PV_d0->Fill(sqrt(vtx->x() * vtx->x() + vtx->y() * vtx->y()));
-	     PV_numTrks->Fill(vtx->tracksSize());
-	     double vertex_sumTrks = 0.0;
-	   for(reco::Vertex::trackRef_iterator iTrack= vtx->tracks_begin(); iTrack != vtx->tracks_end(); iTrack++)
-	     {
-	       vertex_sumTrks += (*iTrack)->pt();
-	     }
-
-	   
-	   PV_sumTrks->Fill(vertex_sumTrks);
-	   }
-	 }
-	 
-	 edm::Handle<reco::BeamSpot> beamSpotH;
-	 iEvent.getByToken(tok_bs_, beamSpotH);
-	 std::vector<Jet> recoPFJets;
-	 recoPFJets.clear();
-
-	 int  nPFCHSJet=0;
-	 edm::Handle<PFJetCollection> pfjetchscoll;
-	 iEvent.getByToken(tok_pfjet_, pfjetchscoll);
-	 const reco::PFJetCollection *pfchsjets = pfjetchscoll.product();
-	 reco::PFJetCollection::const_iterator pfjetchsclus = pfchsjets->begin();
-	 for(pfjetchsclus = pfchsjets->begin(); pfjetchsclus!= pfchsjets->end() ; ++pfjetchsclus){
-	   //	 for (unsigned ijet=0; ijet<pfJets->size();ijet++) {
-	   // recoPFJets.push_back((*pfJets)[ijet]);
-	   // }
-	   //for (unsigned ijet=0; ijet<recoPFJets.size(); ijet++) {
-	   PFJetpt->Fill( pfjetchsclus->pt());
-	   PFJeteta->Fill( pfjetchsclus->eta());
-	   PFJetphi->Fill( pfjetchsclus->phi());
-	   PFJetRapidity->Fill( pfjetchsclus->rapidity());
-	   nPFCHSJet++;
-	 }
-	 PFJetMulti->Fill( nPFCHSJet);
-
-	 
-	 std::vector<Jet> recoCastorJets;
-         recoCastorJets.clear();
-
-
-	 edm::Handle<BasicJetCollection> castorJets;
-	 iEvent.getByToken(tok_castorjet_, castorJets);
-	 for (unsigned ijet=0; ijet<castorJets->size();ijet++) {
-	   recoCastorJets.push_back((*castorJets)[ijet]);
-	 }
-	 for (unsigned ijet=0; ijet<recoCastorJets.size(); ijet++) {
-	   cout<<recoCastorJets[ijet].pt()<<endl;
-	   CastorJetphi->Fill( recoCastorJets[ijet].phi());
-
-	   CastorJetMulti->Fill(recoCastorJets.size());
-	 }
-	 
+    CastorJetMulti->Fill(recoCastorJets.size());
+  }
+  
 	 edm::Handle<reco::TrackCollection> itracks;
 	 iEvent.getByToken(tok_track_, itracks);
 	 reco::TrackBase::TrackQuality hiPurity = reco::TrackBase::qualityByName("highPurity");
 	 std::vector<TLorentzVector> T_trackRec_P4;
-
+	 
 	 int ntracks = 0;
 	 int ntracks_towards = 0;
 	 int ntracks_transverse = 0;
@@ -318,7 +280,7 @@ FSQDQM::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	 h_ntracks_towards->Fill(ntracks_towards);
 	 h_ntracks_transverse->Fill(ntracks_transverse);
 	 h_ntracks_away->Fill(ntracks_away);
-	 /* if(T_trackRec_P4.size()>0){
+	 if(T_trackRec_P4.size()>0){
 	 h_leadingtrkpt_ntrk_towards->Fill(T_trackRec_P4.at(0).Pt(),ntracks_towards/8.37);
 	 h_leadingtrkpt_ntrk_transverse->Fill(T_trackRec_P4.at(0).Pt(),ntracks_transverse/8.37);
 	 h_leadingtrkpt_ntrk_away->Fill(T_trackRec_P4.at(0).Pt(),ntracks_away/8.37);
@@ -328,27 +290,6 @@ FSQDQM::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	 }*/
 }//analyze
 
-/*void FSQDQM::beginRun(edm::Run const& iRun, edm::EventSetup const& iSetup) {
-
-
-  all_triggers.clear();
-  bool changed;
-  if (hltConfig_.init(iRun, iSetup,"HLT" , changed)) {
-    // if init returns TRUE, initialisation has succeeded!
-    unsigned int ntriggers = hltConfig_.size();
-    for (unsigned int t=0;t<ntriggers;++t) {
-      std::string hltname(hltConfig_.triggerName(t));
-      for (unsigned int ik=0; ik<6; ++ik) {
-	if (hltname.find(triggers_[ik])!=std::string::npos ){
-	  all_triggers.push_back(hltname);
-	  break;
-	}
-      }
-    }//loop over ntriggers
-    
-  }
-}//beginRun
-*/
 void FSQDQM::endRun(edm::Run const& run, edm::EventSetup const& eSetup) {
   cout<<"Entering FSQDQM::endRun: "<<endl;
 
@@ -359,25 +300,7 @@ void FSQDQM::endRun(edm::Run const& run, edm::EventSetup const& eSetup) {
   cout<<"...leaving FSQDQM::endRun. "<<endl;
 }
 
-// ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
-/*void
-FSQDQM::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
-  //The following says we do not know what parameters are allowed so do no validation
-  // Please change this to state exactly what you do use, even if it is no parameters
-  edm::ParameterSetDescription desc;
-  //  desc.setUnknown();
-  // descriptions.addDefault(desc);
-  desc.add<edm::InputTag>("HLTriggerResults",edm::InputTag("TriggerResults","","HLT"));
-  desc.add<std::string>("LabelBeamSpot","offlineBeamSpot");
-  desc.add<std::string>("LabelVertex","offlinePrimaryVertices");
-  desc.add<std::string>("LabelPFJet","ak4PFJetsCHS");
-  desc.add<std::string>("LabelCastorJet","ak5CastorJets");
-  desc.add<std::string>("LabelTrack","generalTracks");
-  std::vector<std::string> trig = {"HLT_ZeroBias","HLT_L1MinimumBiasHF_OR_part0"};
-  desc.add<std::vector<std::string>>("Triggers",trig);
-  descriptions.add("FSQDQM",desc);
-}
-*/
+
 //define this as a plug-in
 //DEFINE_FWK_MODULE(FSQDQM);
 

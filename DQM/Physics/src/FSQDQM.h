@@ -173,20 +173,14 @@ class FSQDQM : public edm ::EDAnalyzer{
                edm::EventSetup const& eSetup);
   void beginLuminosityBlock(edm::LuminosityBlock const& lumiSeg, 
                             edm::EventSetup const& context) ;
-  //  void endLuminosityBlock(edm::LuminosityBlock const& lumiSeg, edm::EventSetup const& c);
   void endRun(edm::Run const& run, 
               edm::EventSetup const& eSetup);
-  //  void endJob();
-
-  //  void bookHistograms(DQMStore::IBooker &, edm::Run const &, edm::EventSetup const &) override;
-  //  void analyze(edm::Event const& e, edm::EventSetup const& eSetup) override;
-  //void endRun(edm::Run const& run, edm::EventSetup const& eSetup) override;
-  //  void beginRun(edm::Run const&, edm::EventSetup const&);override;
  private:
-  float deltaPhi(float phi1, float phi2);
+  //  float deltaPhi(float phi1, float phi2);
   void bookHistos(DQMStore* bei);
 
   DQMStore* bei_; 
+  /*
   HLTConfigProvider hltConfigProvider_;
   bool isValidHltConfig_;
 
@@ -203,11 +197,12 @@ class FSQDQM : public edm ::EDAnalyzer{
   std::vector<std::string> all_triggers;
   edm::EDGetTokenT<reco::PFJetCollection> tok_pfjet_;
   edm::EDGetTokenT<reco::BasicJetCollection> tok_castorjet_;
-
+  
   std::vector<int>          hltresults;
   unsigned int runNumber_, eventNumber_ , lumiNumber_, bxNumber_;
 
   //Histograms
+  
   MonitorElement *PFJetpt;
   MonitorElement *PFJeteta;
   MonitorElement *PFJetphi;
@@ -234,7 +229,7 @@ class FSQDQM : public edm ::EDAnalyzer{
   MonitorElement *h_ntracks_towards;
   MonitorElement *h_ntracks_transverse;
   MonitorElement *h_ntracks_away;
-  /*
+  
   TProfile *h_leadingtrkpt_ntrk_away;
   TProfile *h_leadingtrkpt_ntrk_towards;
   TProfile *h_leadingtrkpt_ntrk_transverse;

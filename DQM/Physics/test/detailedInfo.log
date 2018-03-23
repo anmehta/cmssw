@@ -1,0 +1,99 @@
+%MSG-i Geometry:  (NoModuleName) CSCGeometryESModule() 02-Mar-2018 13:44:30 CET  pre-events
+Label '' looking for alignment labels ''.
+%MSG
+%MSG-i Geometry:  (NoModuleName) CSCGeometryESModule() 02-Mar-2018 13:44:30 CET  pre-events
+Label 'idealForDigi' IGNORING alignment labels 'fakeForIdeal'.
+%MSG
+%MSG-i HCAL:  (NoModuleName) 02-Mar-2018 13:44:30 CET pre-events
+CaloTowerTopologyEP::CaloTowerTopologyEP
+%MSG
+%MSG-i Geometry:  (NoModuleName) DTGeometryESModule() 02-Mar-2018 13:44:31 CET  pre-events
+Label '' looking for alignment labels ''.
+%MSG
+%MSG-i Geometry:  (NoModuleName) DTGeometryESModule() 02-Mar-2018 13:44:31 CET  pre-events
+Label 'idealForDigi' IGNORING alignment labels 'fakeForIdeal'.
+%MSG
+%MSG-i Alignments:  (NoModuleName) FakeAlignmentProducer()  02-Mar-2018 13:44:31 CET pre-events
+Providing data with label 'fakeForIdeal'.
+%MSG
+%MSG-i SiPixelQualityESProducer::SiPixelQualityESProducer:  (NoModuleName)  02-Mar-2018 13:44:31 CET pre-events
+
+%MSG
+%MSG-i SiStripBackPlaneCorrectionDepESProducer:  (NoModuleName)  02-Mar-2018 13:44:31 CET pre-events
+ctor
+%MSG
+%MSG-i SiStripLorentzAngleDepESProducer:  (NoModuleName)  02-Mar-2018 13:44:31 CET pre-events
+ctor
+%MSG
+%MSG-i SiStripQualityESProducer:  (NoModuleName) 02-Mar-2018 13:44:31 CET  pre-events
+ctor
+%MSG
+%MSG-i SiStripDetInfoFileReader:  (NoModuleName) 02-Mar-2018 13:44:31 CET  pre-events
+filePath /cvmfs/cms.cern.ch/slc6_amd64_gcc630/cms/cmssw/CMSSW_10_0_2/src/CalibTracker/SiStripCommon/data/SiStripDetInfo.dat
+%MSG
+%MSG-i SiStripDetInfoFileReader::SiStripDetInfoFileReader - END of file reached:  (NoModuleName) 02-Mar-2018 13:44:31 CET pre-events
+
+%MSG
+%MSG-i Geometry:  (NoModuleName) TrackerDigiGeometryESModule()  02-Mar-2018 13:44:31 CET pre-events
+Label 'idealForDigi' IGNORING alignment labels 'fakeForIdeal'.
+%MSG
+%MSG-i Geometry:  (NoModuleName) TrackerDigiGeometryESModule()  02-Mar-2018 13:44:31 CET pre-events
+Label '' looking for alignment labels ''.
+%MSG
+%MSG-i TRACKER:  (NoModuleName) 02-Mar-2018 13:44:31 CET pre-events
+TrackerTopologyEP::TrackerTopologyEP
+%MSG
+%MSG-i HCAL:  (NoModuleName) 02-Mar-2018 13:44:31 CET pre-events
+HcalHardcodeCalibrations::HcalHardcodeCalibrations->...
+%MSG
+02-Mar-2018 13:44:36 CET  Initiating request to open file root://cms-xrd-global.cern.ch//store/data/Run2017E/L1MinimumBias1/AOD/PromptReco-v1/000/303/728/00000/30D28B42-E5A1-E711-A6F1-02163E01A251.root
+%MSG-i XrdAdaptorInternal:  file_open 02-Mar-2018 13:45:42 CET pre-events
+Reading from new server stor110.cis.gov.pl:1095 at site NCBJ-CIS
+%MSG
+%MSG-w XrdAdaptor:  file_open 02-Mar-2018 13:45:42 CET pre-events
+Data is served from NCBJ-CIS instead of original site T2_CH_CERN
+%MSG
+%MSG-i XrdFileInfo:  file_open 02-Mar-2018 13:45:42 CET pre-events
+Opened root://cms-xrd-global.cern.ch//store/data/Run2017E/L1MinimumBias1/AOD/PromptReco-v1/000/303/728/00000/30D28B42-E5A1-E711-A6F1-02163E01A251.root
+%MSG
+%MSG-i XrdFileInfo:  file_open 02-Mar-2018 13:45:42 CET pre-events
+Active sources: stor110.cis.gov.pl:1095, 
+%MSG
+Time since last check 1001; last check 102885; now 102886; next check 102890
+Reading from stor110.cis.gov.pl:1095, quality 260
+Finished timer after 77
+Time since last check 1079; last check 102885; now 102886; next check 102890
+Reading from stor110.cis.gov.pl:1095, quality 77
+Finished timer after 132
+Time since last check 1211; last check 102885; now 102886; next check 102890
+Reading from stor110.cis.gov.pl:1095, quality 104
+Finished timer after 271
+02-Mar-2018 13:45:45 CET  Successfully opened file root://cms-xrd-global.cern.ch//store/data/Run2017E/L1MinimumBias1/AOD/PromptReco-v1/000/303/728/00000/30D28B42-E5A1-E711-A6F1-02163E01A251.root
+Time since last check 4244; last check 102885; now 102889; next check 102890
+Reading from stor110.cis.gov.pl:1095, quality 159
+Finished timer after 1440
+Time since last check 6167; last check 102885; now 102891; next check 102890
+Trying to open URL: root://cms-xrd-global.cern.ch//store/data/Run2017E/L1MinimumBias1/AOD/PromptReco-v1/000/303/728/00000/30D28B42-E5A1-E711-A6F1-02163E01A251.root?tried=stor110.cis.gov.pl
+Reading from stor110.cis.gov.pl:1095, quality 479
+Finished timer after 58
+Time since last check 59; last check 102891; now 102891; next check 102896
+Reading from stor110.cis.gov.pl:1095, quality 394
+Finished timer after 58
+Time since last check 118; last check 102891; now 102891; next check 102896
+Reading from stor110.cis.gov.pl:1095, quality 338
+Finished timer after 58
+Time since last check 177; last check 102891; now 102891; next check 102896
+Finished timer after 58
+Finished timer after 59
+Finished timer after 1263
+Reading from stor110.cis.gov.pl:1095, quality 347
+Reading from stor110.cis.gov.pl:1095, quality 254
+Finished timer after 58
+%MSG-w XrdAdaptor:  (NoModuleName) 02-Mar-2018 13:45:56 CET pre-events
+Data is now served from NCBJ-CIS, desy.de instead of previous NCBJ-CIS
+%MSG
+HLTConfigData: ProcessPSet with name/GT/table/l1tType: '' '' '' 0
+%MSG-i FSQDQM:  DQMFSQ:DQMFSQ@ctor 02-Mar-2018 13:45:57 CET pre-events
+ Creating FSQDQM 
+
+%MSG

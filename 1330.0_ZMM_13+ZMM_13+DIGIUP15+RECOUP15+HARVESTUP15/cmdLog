@@ -1,0 +1,12 @@
+
+# in: /afs/cern.ch/user/a/anmehta/TryingDQM_v3/CMSSW_10_0_2/src going to execute cd 1330.0_ZMM_13+ZMM_13+DIGIUP15+RECOUP15+HARVESTUP15
+ cmsDriver.py ZMM_13TeV_TuneCUETP8M1_cfi  --conditions auto:run2_mc -n 10 --era Run2_2016 --eventcontent FEVTDEBUG --relval 18000,100 -s GEN,SIM --datatier GEN-SIM --beamspot Realistic50ns13TeVCollision -n 10 --fileout file:step1.root  > step1_ZMM_13+ZMM_13+DIGIUP15+RECOUP15+HARVESTUP15.log  2>&1
+ 
+
+# in: /afs/cern.ch/user/a/anmehta/TryingDQM_v3/CMSSW_10_0_2/src going to execute cd 1330.0_ZMM_13+ZMM_13+DIGIUP15+RECOUP15+HARVESTUP15
+ cmsDriver.py step2  --conditions auto:run2_mc -s DIGI:pdigi_valid,L1,DIGI2RAW,HLT:@relval2016 --datatier GEN-SIM-DIGI-RAW-HLTDEBUG -n 10 --era Run2_2016 --eventcontent FEVTDEBUGHLT -n 10 --filein file:step1.root  --fileout file:step2.root  > step2_ZMM_13+ZMM_13+DIGIUP15+RECOUP15+HARVESTUP15.log  2>&1
+ 
+
+# in: /afs/cern.ch/user/a/anmehta/TryingDQM_v3/CMSSW_10_0_2/src going to execute cd 1330.0_ZMM_13+ZMM_13+DIGIUP15+RECOUP15+HARVESTUP15
+ cmsDriver.py step3  --runUnscheduled  --conditions auto:run2_mc -s RAW2DIGI,L1Reco,RECO,RECOSIM,EI,PAT,VALIDATION:@standardValidation+@miniAODValidation,DQM:@standardDQM+@ExtraHLT+@miniAODDQM --datatier GEN-SIM-RECO,MINIAODSIM,DQMIO -n 10 --era Run2_2016 --eventcontent RECOSIM,MINIAODSIM,DQM -n 10 --filein file:step2.root  --fileout file:step3.root  > step3_ZMM_13+ZMM_13+DIGIUP15+RECOUP15+HARVESTUP15.log  2>&1
+ 

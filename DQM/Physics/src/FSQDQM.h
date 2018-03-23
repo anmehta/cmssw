@@ -1,5 +1,5 @@
-#ifndef DQMFSQ_H
-#define DQMFSQ_H
+#ifndef FSQDQM_H
+#define FSQDQM_H
 
 #include <memory>
 #include <iostream>
@@ -158,11 +158,11 @@
 
 class DQMStore;
 
-class DQMFSQ : public edm ::EDAnalyzer{
+class FSQDQM : public edm ::EDAnalyzer{
 
  public:
- DQMFSQ(const edm::ParameterSet& ps);
-  virtual ~DQMFSQ();
+ FSQDQM(const edm::ParameterSet& ps);
+  virtual ~FSQDQM();
 
  protected:
 

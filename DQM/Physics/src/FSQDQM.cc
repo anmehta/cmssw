@@ -155,14 +155,14 @@ FSQDQM::~FSQDQM()
    h_ntracks_towards      = bei.book1D("h_ntracks_towards",";h_ntracks_towards",50,-0.5,49.5);
    h_ntracks_transverse      = bei.book1D("h_ntracks_transverse",";h_ntracks_transverse",50,-0.5,49.5);
    h_ntracks_away      = bei.book1D("h_ntracks_away",";h_ntracks_away",50,-0.5,49.5);
-   /*
-   h_leadingtrkpt_ntrk_away = fs->make<TProfile>("h_leadingtrkpt_ntrk_away","h_leadingtrkpt_ntrk_away",50,0,50,0,30);
-   h_leadingtrkpt_ntrk_towards = fs->make<TProfile>("h_leadingtrkpt_ntrk_towards","h_leadingtrkpt_ntrk_towards",50,0,50,0,30);
-   h_leadingtrkpt_ntrk_transverse = fs->make<TProfile>("h_leadingtrkpt_ntrk_transverse","h_leadingtrkpt_ntrk_transverse",50,0,50,0,30);
-   h_leadingtrkpt_ptsum_away = fs->make<TProfile>("h_leadingtrkpt_ptsum_away","h_leadingtrkpt_ptsum_away",50,0,50,0,30);
-   h_leadingtrkpt_ptsum_towards = fs->make<TProfile>("h_leadingtrkpt_ptsum_towards","h_leadingtrkpt_ptsum_towards",50,0,50,0,30);
-   h_leadingtrkpt_ptsum_transverse = fs->make<TProfile>("h_leadingtrkpt_ptsum_transverse","h_leadingtrkpt_ptsum_transverse",50,0,50,0,30);
-   */
+   
+   h_leadingtrkpt_ntrk_away =bei.bookProfile("h_leadingtrkpt_ntrk_away","h_leadingtrkpt_ntrk_away",50,0,50,0,30," ");
+   h_leadingtrkpt_ntrk_towards =bei.bookProfile("h_leadingtrkpt_ntrk_towards","h_leadingtrkpt_ntrk_towards",50,0,50,0,30," ");
+   h_leadingtrkpt_ntrk_transverse =bei.bookProfile("h_leadingtrkpt_ntrk_transverse","h_leadingtrkpt_ntrk_transverse",50,0,50,0,30," ");
+   h_leadingtrkpt_ptsum_away =bei.bookProfile("h_leadingtrkpt_ptsum_away","h_leadingtrkpt_ptsum_away",50,0,50,0,30," ");
+   h_leadingtrkpt_ptsum_towards =bei.bookProfile("h_leadingtrkpt_ptsum_towards","h_leadingtrkpt_ptsum_towards",50,0,50,0,30," ");
+   h_leadingtrkpt_ptsum_transverse =bei.bookProfile("h_leadingtrkpt_ptsum_transverse","h_leadingtrkpt_ptsum_transverse",50,0,50,0,30," ");
+     
  }
 
 
@@ -222,9 +222,7 @@ FSQDQM::~FSQDQM()
 	   NPV->Fill(privtxs->size());
 	   double bestvz=-999.9, bestvx=-999.9, bestvy=-999.9;
 	   double bestvzError=-999.9, bestvxError=-999.9, bestvyError=-999.9;
-	   
-	   
-	   if(privtxs->begin() !=privtxs->end() && !(pvtx.isFake()) ){
+	   if(privtxs->begin() !=privtxs->end() && !(pvtx.isFake()) && pvtx.position().Rho() < 2. && fabs(pvtx.position().Z()) > 24){
 	     bestvz = pvtx.z(); 
 	     bestvx = pvtx.x(); 
 	     bestvy = pvtx.y();
@@ -239,7 +237,6 @@ FSQDQM::~FSQDQM()
 	     {
 	       vertex_sumTrks += (*iTrack)->pt();
 	     }
-	   
 	   PV_sumTrks->Fill(vertex_sumTrks);
 	   }
 	 
@@ -344,7 +341,7 @@ FSQDQM::~FSQDQM()
 	 h_ntracks_towards->Fill(ntracks_towards);
 	 h_ntracks_transverse->Fill(ntracks_transverse);
 	 h_ntracks_away->Fill(ntracks_away);
-	 /*
+
 	   if(T_trackRec_P4.size()>0){
 	 h_leadingtrkpt_ntrk_towards->Fill(T_trackRec_P4.at(0).Pt(),ntracks_towards/8.37);
 	 h_leadingtrkpt_ntrk_transverse->Fill(T_trackRec_P4.at(0).Pt(),ntracks_transverse/8.37);
@@ -352,7 +349,7 @@ FSQDQM::~FSQDQM()
 	 h_leadingtrkpt_ptsum_towards->Fill(T_trackRec_P4.at(0).Pt(),ptsum_towards/8.37);
 	 h_leadingtrkpt_ptsum_transverse->Fill(T_trackRec_P4.at(0).Pt(),ptsum_transverse/8.37);
 	 h_leadingtrkpt_ptsum_away->Fill(T_trackRec_P4.at(0).Pt(),ptsum_away/8.37);
-	 }*/
+	 }
 
 }//analyze
 

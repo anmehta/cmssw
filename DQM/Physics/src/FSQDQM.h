@@ -140,14 +140,14 @@ class FSQDQM : public DQMEDAnalyzer{
   MonitorElement *h_ntracks_towards;
   MonitorElement *h_ntracks_transverse;
   MonitorElement *h_ntracks_away;
-  /*
-  TProfile *h_leadingtrkpt_ntrk_away;
-  TProfile *h_leadingtrkpt_ntrk_towards;
-  TProfile *h_leadingtrkpt_ntrk_transverse;
-  TProfile *h_leadingtrkpt_ptsum_away;
-  TProfile *h_leadingtrkpt_ptsum_towards;
-  TProfile *h_leadingtrkpt_ptsum_transverse;
-  */
+
+  MonitorElement *h_leadingtrkpt_ntrk_away;
+  MonitorElement *h_leadingtrkpt_ntrk_towards;
+  MonitorElement *h_leadingtrkpt_ntrk_transverse;
+  MonitorElement *h_leadingtrkpt_ptsum_away;
+  MonitorElement *h_leadingtrkpt_ptsum_towards;
+  MonitorElement *h_leadingtrkpt_ptsum_transverse;
+
   //  math::XYZPoint RefVtx;
 };
 #endif

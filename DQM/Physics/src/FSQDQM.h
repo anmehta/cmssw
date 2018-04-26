@@ -140,6 +140,8 @@ class FSQDQM : public DQMEDAnalyzer{
   MonitorElement *h_ntracks_towards;
   MonitorElement *h_ntracks_transverse;
   MonitorElement *h_ntracks_away;
+  MonitorElement *h_trkptsum;
+  MonitorElement *h_ntracks;
 
   MonitorElement *h_leadingtrkpt_ntrk_away;
   MonitorElement *h_leadingtrkpt_ntrk_towards;

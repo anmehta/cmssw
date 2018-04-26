@@ -151,6 +151,9 @@ FSQDQM::~FSQDQM()
    PV_sumTrks=bei.book1D("PV_sumTrks",";PV_sumTrks",100,0,100);
    h_ptsum_towards      = bei.book1D("h_ptsum_towards",";h_ptsum_towards",100,0,100);
    h_ptsum_transverse      = bei.book1D("h_ptsum_transverse",";h_ptsum_transverse",100,0,100);
+
+   h_ntracks      = bei.book1D("h_ntracks",";h_ntracks",50,-0.5,49.5);
+   h_trkptsum      = bei.book1D("h_trkptsum",";h_trkptsum",100,0,100);
    h_ptsum_away      = bei.book1D("h_ptsum_away",";h_ptsum_away",100,0,100);
    h_ntracks_towards      = bei.book1D("h_ntracks_towards",";h_ntracks_towards",50,-0.5,49.5);
    h_ntracks_transverse      = bei.book1D("h_ntracks_transverse",";h_ntracks_transverse",50,-0.5,49.5);
@@ -222,7 +225,7 @@ FSQDQM::~FSQDQM()
 	   NPV->Fill(privtxs->size());
 	   double bestvz=-999.9, bestvx=-999.9, bestvy=-999.9;
 	   double bestvzError=-999.9, bestvxError=-999.9, bestvyError=-999.9;
-	   if(privtxs->begin() !=privtxs->end() && !(pvtx.isFake()) && pvtx.position().Rho() < 2. && fabs(pvtx.position().Z()) > 24){
+	   if(privtxs->begin() !=privtxs->end() && !(pvtx.isFake()) && pvtx.position().Rho() <= 2. && fabs(pvtx.position().z()) <= 24){
 	     bestvz = pvtx.z(); 
 	     bestvx = pvtx.x(); 
 	     bestvy = pvtx.y();
@@ -334,7 +337,8 @@ FSQDQM::~FSQDQM()
 	 
 	 
 	 
-	 
+	 h_ntracks->Fill(ntracks);
+         h_trkptsum->Fill(ptsum);
 	 h_ptsum_towards->Fill(ptsum_towards);
 	 h_ptsum_transverse->Fill(ptsum_transverse);
 	 h_ptsum_away->Fill(ptsum_away);
